@@ -1,20 +1,20 @@
 package uuid
 
 import (
-    "encoding/hex"
+    "fmt"
     "crypto/rand"
 )
 
-func GenUUID() (string, error) {
+func GenUUID() (string) {
     uuid := make([]byte, 16)
     n, err := rand.Read(uuid)
     if n != len(uuid) || err != nil {
-        return "", err
+        return ""
     }
 
     //Version 4 RFC4122
-    uuid[8] = 0x80
-    uuid[4] = 0x40
+    uuid[6] = (uuid[6] & 0x0f) | 0x40
+    uuid[8] = (uuid[8] & 0x3f) | 0x80
 
-    return hex.EncodeToString(uuid), nil
+    return fmt.Sprintf("%x-%x-%x-%x-%x", uuid[0:4], uuid[4:6], uuid[6:8], uuid[8:10], uuid[10:])
 }

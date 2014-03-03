@@ -1,5 +1,11 @@
 uuid-gen
 ========
+To pull the code:
+
+```
+go get github.com/abhi-bit/uuid-gen
+```
+
 Run the Server:
 
 ```

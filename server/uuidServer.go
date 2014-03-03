@@ -24,7 +24,7 @@ func UUIDServer(w http.ResponseWriter, req *http.Request) {
         }
     }
     for ; count > 0; count -= 1 {
-        uuid, err := uuid.GenUUID()
+        uuid := uuid.GenUUID()
         if err != nil {
             fmt.Fprintf(w, "{\"Error\":\"%s\"}\n", err)
         } else {
